@@ -58,6 +58,66 @@ async function main() {
   console.log("BALANCEE U:     " + await myNFT.balanceOf(user1.address))
   console.log("BALANCEE N:     " + await myNFT.balanceOf(myNFT.address))
   console.log("BALANCEE P:     " + await myNFT.balanceOf(myNFT.getPairAddress()))
+
+
+  await router.connect(user1).swapETHForAnyNFTs(
+    [
+      [
+        await await myNFT.getPairAddress(),
+        4
+      ]
+    ],
+    user1.address, // Excess eth recipient
+    user1.address, // NFT recipient
+    deadline,
+    {value: ethers.utils.parseEther("200")}
+  )
+
+  console.log("Contract eth: " + ethers.utils.formatEther(await ethers.provider.getBalance(myNFT.address)))
+  console.log("User eth:     " + ethers.utils.formatEther(await ethers.provider.getBalance(user1.address)))
+  console.log("BALANCEE U:     " + await myNFT.balanceOf(user1.address))
+  console.log("BALANCEE N:     " + await myNFT.balanceOf(myNFT.address))
+  console.log("BALANCEE P:     " + await myNFT.balanceOf(myNFT.getPairAddress()))
+
+
+  await router.connect(user1).swapETHForAnyNFTs(
+    [
+      [
+        await await myNFT.getPairAddress(),
+        4
+      ]
+    ],
+    user1.address, // Excess eth recipient
+    user1.address, // NFT recipient
+    deadline,
+    {value: ethers.utils.parseEther("200")}
+  )
+
+  console.log("Contract eth: " + ethers.utils.formatEther(await ethers.provider.getBalance(myNFT.address)))
+  console.log("User eth:     " + ethers.utils.formatEther(await ethers.provider.getBalance(user1.address)))
+  console.log("BALANCEE U:     " + await myNFT.balanceOf(user1.address))
+  console.log("BALANCEE N:     " + await myNFT.balanceOf(myNFT.address))
+  console.log("BALANCEE P:     " + await myNFT.balanceOf(myNFT.getPairAddress()))
+
+
+  await router.connect(user1).swapETHForAnyNFTs(
+    [
+      [
+        await await myNFT.getPairAddress(),
+        1
+      ]
+    ],
+    user1.address, // Excess eth recipient
+    user1.address, // NFT recipient
+    deadline,
+    {value: ethers.utils.parseEther("500")}
+  )
+
+  console.log("Contract eth: " + ethers.utils.formatEther(await ethers.provider.getBalance(myNFT.address)))
+  console.log("User eth:     " + ethers.utils.formatEther(await ethers.provider.getBalance(user1.address)))
+  console.log("BALANCEE U:     " + await myNFT.balanceOf(user1.address))
+  console.log("BALANCEE N:     " + await myNFT.balanceOf(myNFT.address))
+  console.log("BALANCEE P:     " + await myNFT.balanceOf(myNFT.getPairAddress()))
 }
 
 // We recommend this pattern to be able to use async/await everywhere

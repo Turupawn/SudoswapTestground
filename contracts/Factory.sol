@@ -2,6 +2,7 @@
 pragma solidity 0.8.16;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract ERC20{}
 
@@ -103,7 +104,7 @@ contract LSSVMPairFactory {
     }
 }
 
-contract MyNFT is ERC721 {
+contract MyNFT is ERC721Enumerable {
     uint256 public token_count;
 
     LSSVMPairFactory public factory;
@@ -160,6 +161,12 @@ contract MyNFT is ERC721 {
         if(from == address(pair) && from != address(0))
         {
             _mint(address(this), token_count);
+            _approve(address(pair), token_count);
+            _transfer(
+                address(this),
+                address(pair),
+                token_count
+            );
             token_count += 1;
             //_approve(factoryAddress, token_count);
         }
