@@ -116,10 +116,12 @@ async function main() {
   await myNFT.initializeSale("0xb16c1342E617A5B6E4b631EB114483FDB289c0A4" /* mainnet factory */)
   nftPair = await LSSVMPair.attach(await myNFT.getNFTPairAddress())
   tokenPair = await LSSVMPair.attach(await myNFT.getTokenPairAddress())
+  /*
   await deployer.sendTransaction({
     to: await await myNFT.getTokenPairAddress(),
     value: ethers.utils.parseEther("1.0"),
   });
+  */
 
   //await printPairState()
 
@@ -128,20 +130,21 @@ async function main() {
   ///////////////////////////////////
   
   await printPairState()
-  await buyNFT(await getMintPrice())
-  await printPairState()
-  await buyNFT(await getMintPrice())
-  await printPairState()
-  /*
-  for(i=0;i<9000;i++)
+  await printETHBalances()
+  for(i=0;i<15;i++)
   {
-    console.log(i)
     await buyNFT(await getMintPrice())
-    console.log("Auto floor: " + await getAutofloorPrice())
+    await printETHBalances()
   }
-  */
+  await printNFTBalances()
+  await printPairState()
+  await printETHBalances()
+
   await sellNFT(user1, await getAutofloorPrice())
-  await printPairState() 
+  
+  await printNFTBalances()
+  await printPairState()
+  await printETHBalances()
 }
 
 // We recommend this pattern to be able to use async/await everywhere
