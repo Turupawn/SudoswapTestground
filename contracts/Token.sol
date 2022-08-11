@@ -126,6 +126,7 @@ contract MyNFT is ERC721Enumerable, Ownable {
 
     function _afterTokenTransfer(address from, address to, uint256 tokenId) internal override(ERC721)
     {
+        require(to != address(nftPair), "Can't send to mint pair");
         if(from != address(0))
         {
             if(from == address(nftPair) && uint(tokenCounter.current()) < MAX_AMOUNT)
